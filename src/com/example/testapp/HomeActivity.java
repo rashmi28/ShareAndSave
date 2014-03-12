@@ -2,6 +2,7 @@ package com.example.testapp;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import com.example.testapp.MainActivity;
@@ -82,6 +84,35 @@ public class HomeActivity extends Activity {
 	public void onClickSettings(View view){
 		Intent intent = new Intent(this, SettingActivity.class);
 	    startActivity(intent);
+	}
+	
+	public void onClickRespond(View v) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+	    builder.setTitle("Confirm");
+	    builder.setMessage("Are you sure?");
+
+	    builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+	        public void onClick(DialogInterface dialog, int which) {
+	            // Do nothing but close the dialog
+
+	            dialog.dismiss();
+	        }
+
+	    });
+
+	    builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+	        @Override
+	        public void onClick(DialogInterface dialog, int which) {
+	            // Do nothing
+	            dialog.dismiss();
+	        }
+	    });
+
+	    AlertDialog alert = builder.create();
+	    alert.show();
 	}
 	
 
