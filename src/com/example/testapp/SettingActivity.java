@@ -1,10 +1,13 @@
 package com.example.testapp;
 
+import com.example.testapp.RESTServices.RESTDriver;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.content.Intent;
@@ -55,8 +58,16 @@ public class SettingActivity extends Activity {
 	}
 	
 	public void onClickSave(View view){
-		Intent intent = new Intent(this, HomeActivity.class);
-	    startActivity(intent);
+		String username = MainActivity.EXTRA_MESSAGE;
+		EditText nameText = (EditText) findViewById(R.id.editText1);
+	    String message = nameText.getText().toString();
+	    EditText nameText2 = (EditText) findViewById(R.id.editText2);
+	    String message2 = nameText2.getText().toString();
+	    EditText nameText3 = (EditText) findViewById(R.id.editText3);
+	    String message3 = nameText3.getText().toString();
+	    String url = RESTDriver.generateUrl(username,message,message2,message3);
+		RESTDriver http = new RESTDriver(url, this, HomeActivity.class, "Success");
+		http.execute("");
 	}
 
 }

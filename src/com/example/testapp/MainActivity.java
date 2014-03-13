@@ -1,7 +1,10 @@
 package com.example.testapp;
 
+import com.example.testapp.RESTServices.RESTDriver;
+
 import android.os.Bundle;
 import android.app.Activity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.content.Intent;
@@ -30,11 +33,15 @@ public class MainActivity extends Activity {
 	}
 	
 	public void onClickLogin(View view){
-		Intent intent = new Intent(this, HomeActivity.class);
-	    EditText nameText = (EditText) findViewById(R.id.editText1);
+		Log.d("REST Login", "Inside Login method");
+		EditText nameText = (EditText) findViewById(R.id.editText1);
 	    String message = nameText.getText().toString();
+	    EditText nameText2 = (EditText) findViewById(R.id.editText2);
+	    String message2 = nameText2.getText().toString();
 	    EXTRA_MESSAGE = message;
-	    startActivity(intent);
+	    String url = RESTDriver.generateUrl(message,message2);
+		RESTDriver http = new RESTDriver(url, this, HomeActivity.class, "Success");
+		http.execute("");
 	}
 
 }

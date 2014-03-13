@@ -1,10 +1,14 @@
 package com.example.testapp;
 
 import android.os.Bundle;
+
+import com.example.testapp.RESTServices.*;
 import android.app.Activity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.content.Intent;
@@ -55,8 +59,21 @@ public class RegisterActivity extends Activity {
 	}
 	
 	public void onClickRegister(View view){
-		Intent intent = new Intent(this, MainActivity.class);
-	    startActivity(intent);
+		Log.d("REST","Inside Click Register");
+		EditText et = (EditText)findViewById(R.id.editText5);    
+		String email = et.getText().toString().trim();
+		et = (EditText)findViewById(R.id.editText1);    
+		String username = et.getText().toString().trim();
+		et = (EditText)findViewById(R.id.editText2);    
+		String pwd = et.getText().toString().trim();
+		et = (EditText)findViewById(R.id.editText4);    
+		String address = et.getText().toString().trim();    
+		String blood_grp = "A+";
+		String url = RESTDriver.generateUrl(username,pwd,email,address,blood_grp);
+		RESTDriver http = new RESTDriver(url, this, MainActivity.class, "Success");
+		http.execute("");
+		/*Intent intent = new Intent(this, MainActivity.class);
+	    startActivity(intent);*/
 	}
 
 }

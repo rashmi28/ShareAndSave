@@ -22,7 +22,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView_name"
         android:layout_marginLeft="190dp"
-        android:onClick="onClickSettings" />
+        android:onClick="onClickSettings"
+        android:text="Settings" />
     
     <Button
         android:id="@+id/button1"
