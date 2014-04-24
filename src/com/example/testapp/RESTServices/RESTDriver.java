@@ -28,7 +28,7 @@ public class RESTDriver extends AsyncTask<String, Void, String> {
 	Context context;
 	String responseString;
 	
-	private static String serverip = "54.186.114.204";
+	private static String serverip = "54.186.185.120";
 	
 	public String getResponseString() {
 		return responseString;
@@ -51,6 +51,10 @@ public class RESTDriver extends AsyncTask<String, Void, String> {
 	
 	public static String generateUrl (String u_name, String address, String frequency, String distance) {
 		return "http://"+serverip+"/update.php?user_name="+u_name+"&user_address="+address+"&user_frequency="+frequency+"&user_distance="+distance;
+	}
+	
+	public static String generateUrl (String u_name, int event_id) {
+		return "http://"+serverip+"/attend.php?user_name="+u_name+"&event_id="+event_id;
 	}
 
 		

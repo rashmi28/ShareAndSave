@@ -15,9 +15,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import com.example.testapp.MainActivity;
+import com.example.testapp.RESTServices.RESTDriver;
 
 public class HomeActivity extends Activity {
 
+	static int count = 0;
+	
+	private Activity getInstance() {
+		return this;
+	}
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -96,7 +103,9 @@ public class HomeActivity extends Activity {
 
 	        public void onClick(DialogInterface dialog, int which) {
 	            // Do nothing but close the dialog
-
+	        	String url = RESTDriver.generateUrl(MainActivity.EXTRA_MESSAGE,count++);
+	        	RESTDriver http = new RESTDriver(url, getInstance(), HomeActivity.class, "Success");
+	    		http.execute("");
 	            dialog.dismiss();
 	        }
 
